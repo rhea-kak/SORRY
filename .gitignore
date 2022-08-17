@@ -11,6 +11,9 @@
 # ocamlbuild working directory
 _build/
 
+#bin
+bin/
+
 # ocamlbuild targets
 *.byte
 *.native
@@ -27,3 +30,8 @@ setup.log
 
 # Local OPAM switch
 _opam/
+
+*.opam
+dune 
+dune-project
+dune-workspace
