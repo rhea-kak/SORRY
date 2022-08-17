@@ -12,7 +12,6 @@ type statetype = {
 }
 
 let make_state (num_players : int) =
-  print_endline "making state";
   let player1 = Player.make_player 1 in
   let player2 = Player.make_player 2 in
   let player3 = Player.make_player 3 in
@@ -535,7 +534,6 @@ let roll_dice dice_size =
   1 + Random.int dice_size
 
 let get_player (state : statetype) (num : int) : Player.playertype =
-  print_endline "getplayer";
   match num with
   | 1 -> List.nth state.playerlist 0
   | 2 -> List.nth state.playerlist 1
@@ -585,7 +583,6 @@ let take_turn
     (player_num : int)
     (pawn_num : int)
     (dice_roll : int) =
-  print_endline "taketurn";
   let player_to_move = get_player state player_num in
   let current_pos = Player.get_pawn_pos player_to_move pawn_num in
   if current_pos = -1 then
@@ -614,7 +611,6 @@ let get_current_positions (state : statetype) =
   let player4_positions =
     Player.get_all_pawn_pos (get_player state 4)
   in
-  print_endline "gotplayer1";
   [
     player1_positions;
     player2_positions;
@@ -623,7 +619,6 @@ let get_current_positions (state : statetype) =
   ]
 
 let match_with_positions (state : statetype) (num : int) : bool =
-  print_endline "matchwpos";
   if
     List.mem true
       (List.map (List.mem num) (get_current_positions state))
@@ -631,7 +626,6 @@ let match_with_positions (state : statetype) (num : int) : bool =
   else false
 
 let get_printable_id (state : statetype) (num : int) : string =
-  print_endline "getid";
   let positions = get_current_positions state in
   let player1positions = List.nth positions 0 in
   let player2positions = List.nth positions 1 in
@@ -656,7 +650,6 @@ let get_printable_id (state : statetype) (num : int) : string =
   else "null"
 
 let visual_char (state : statetype) (x : int) : string =
-  print_endline "visualchar";
   match x with
   | a ->
       if List.mem a state.blanks then "      "
@@ -690,7 +683,6 @@ let visual_char (state : statetype) (x : int) : string =
       else " ____ "
 
 let board_print_string (state : statetype) : string =
-  print_endline "here";
   List.fold_right ( ^ )
     (List.map (visual_char state) state.total_board)
     ""
